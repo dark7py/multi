@@ -202,6 +202,8 @@ while True:
 
 * Замерьте скорость герации на 1 ядре у вас на компьютере.
 ![image](https://user-images.githubusercontent.com/77889009/144435950-2b045d68-4032-4ee6-8099-8b71787332bd.png)
+![image](https://user-images.githubusercontent.com/77889009/144438450-39eb3dd9-19c1-4e8d-8cd8-fad2cf850b1c.png)
+
 
 * Ускорьтесь за счет использования `ProcessPoolExecutor`.
 * Изменяйте количество воркеров: 2, 4, 5, 10, 100.
