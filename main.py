@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 from urllib.request import urlopen
 
+'''
 #IO-bound
 url = 'https://ru.wikipedia.org/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0'
 
@@ -69,3 +70,27 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
     future_to_url = {executor.submit(load_url, url, 5) for url in links}
     for future in concurrent.futures.as_completed(future_to_url):
         print(future.result())
+'''
+
+from hashlib import md5
+from random import choice
+
+
+def generate():
+    while True:
+        s = "".join([choice("0123456789") for i in range(50)])
+        h = md5(s.encode('utf8')).hexdigest()
+
+        if h.endswith("00000"):
+            print(s, h)
+
+
+def find_coins(needed: int):
+    with concurrent.futures.ProcessPoolExecutor(max_workers=100) as executor:
+        tasks = [executor.submit(generate) for i in range(needed)]
+        for task in concurrent.futures.as_completed(tasks):
+            print(task.result())
+
+
+if __name__ == '__main__':
+    find_coins(5)
