@@ -86,7 +86,7 @@ def generate():
 
 
 def find_coins(needed: int):
-    with concurrent.futures.ProcessPoolExecutor(max_workers=100) as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=5) as executor:
         tasks = [executor.submit(generate) for i in range(needed)]
         for task in concurrent.futures.as_completed(tasks):
             print(task.result())
